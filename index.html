@@ -713,33 +713,38 @@
         }
 
         // Form submission
-       document.getElementById('leadForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
-    
-    // Here you would typically send the data to your server
-    console.log('Form submitted:', data);
-    
-    // Show success message
-    const currentLang = document.documentElement.lang;
-    const message = currentLang === 'ar' 
-        ? 'تم إرسال طلبك بنجاح! سنتواصل معك قريباً'
-        : 'Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt';
-    
-    // Display the message (example: inside an element with id="formMessage")
-    const messageContainer = document.getElementById('formMessage');
-    if (messageContainer) {
-        messageContainer.textContent = message;
-        messageContainer.style.display = 'block';
-    } else {
-        alert(message);
-    }
-    
-    // Optionally reset the form
-    this.reset();
-});
+// Get form data
+const formData = new FormData(this);
+const data = Object.fromEntries(formData);
+
+// Build the message text
+let messageText = "Nouvelle demande:\n";
+for (const [key, value] of Object.entries(data)) {
+  messageText += `${key}: ${value}\n`;
+}
+
+// Encode the message
+const encodedMessage = encodeURIComponent(messageText);
+
+// Your WhatsApp number (example: 212612345678 for Morocco)
+const phoneNumber = "212612345678";
+
+// Build the WhatsApp URL
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+// Redirect to WhatsApp
+window.open(whatsappUrl, '_blank');
+
+// Optionally show a message on the page
+const currentLang = document.documentElement.lang;
+const successMessage = currentLang === 'ar'
+  ? 'تم إرسال طلبك بنجاح! سيتم فتح واتساب لإرسال التفاصيل.'
+  : 'Votre demande a été envoyée. WhatsApp va s’ouvrir pour confirmer.';
+
+const messageContainer = document.getElementById('formMessage');
+if (messageContainer) {
+  messageContainer.textContent = successMessage;
+}
 
             
             alert(message);
