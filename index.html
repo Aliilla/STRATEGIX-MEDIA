@@ -1,7 +1,748 @@
-cd /path/to/your/project             # Go to the folder with your landing page
-git init                             # Initialize Git
-git add index.html                   # Add your landing page file
-git commit -m "Add Strategix Media landing page"
-git branch -M main                   # Set main branch
-git remote add origin https://github.com/Aliilla/STRATEGIX-MEDIA.git
-git push -u origin main              # Push your code to GitHub
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategix Media - وكالة إعلانات Meta للعقارات</title>
+    <meta name="description" content="نساعد وكلاء العقارات على مضاعفة مبيعاتهم باستخدام إعلانات Meta الموجهة">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #22c55e;
+            --secondary-yellow: #fbbf24;
+            --dark-green: #16a34a;
+            --light-green: #dcfce7;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--white);
+            border-radius: 50px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 25px;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: var(--white);
+            padding: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--secondary-yellow);
+            color: var(--text-dark);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: #f59e0b;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 4rem 0;
+            background: var(--gray-50);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .trust-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .trust-item i {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-green);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 4rem 0;
+            background: var(--gray-50);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .step-number {
+            background: var(--primary-green);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 4rem 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--gray-100);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-green);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+            background: var(--gray-50);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-green);
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128c7e;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .form-container {
+                padding: 2rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* French Language Styles */
+        [lang="fr"] {
+            direction: ltr;
+            text-align: left;
+        }
+
+        [lang="fr"] .hero h1,
+        [lang="fr"] .hero p,
+        [lang="fr"] .section-title {
+            text-align: left;
+        }
+
+        [lang="fr"] .trust-item,
+        [lang="fr"] .step,
+        [lang="fr"] .testimonial {
+            text-align: left;
+        }
+
+        /* Hidden by default */
+        .french-content {
+            display: none;
+        }
+
+        [lang="fr"] .arabic-content {
+            display: none;
+        }
+
+        [lang="fr"] .french-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" onclick="switchLanguage('ar')">العربية</button>
+        <button class="lang-btn" onclick="switchLanguage('fr')">Français</button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">Strategix Media</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="arabic-content">نساعد وكلاء العقارات على مضاعفة مبيعاتهم باستخدام إعلانات Meta الموجهة</h1>
+            <h1 class="french-content">Nous aidons les agents immobiliers à doubler leurs ventes grâce aux publicités Meta ciblées</h1>
+            
+            <p class="arabic-content">نظام شامل "جاهز للاستخدام" - لا تحتاج مهارات تقنية. نحن نتعامل مع كل شيء من البداية للنهاية</p>
+            <p class="french-content">Système complet "clé en main" - Aucune compétence technique requise. Nous gérons tout de A à Z</p>
+            
+            <a href="https://wa.me/212600000000?text=مرحبا، أريد حجز مكالمة استراتيجية مجانية" class="cta-button arabic-content">
+                <i class="fab fa-whatsapp"></i>
+                احجز مكالمتك المجانية الآن
+            </a>
+            <a href="https://wa.me/212600000000?text=Bonjour, je souhaite réserver un appel stratégique gratuit" class="cta-button french-content">
+                <i class="fab fa-whatsapp"></i>
+                Réservez votre appel gratuit maintenant
+            </a>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title arabic-content">ثقة العملاء في المدن الرئيسية</h2>
+            <h2 class="section-title french-content">Confiance des clients dans les villes principales</h2>
+            
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i class="fas fa-building"></i>
+                    <h3 class="arabic-content">الدار البيضاء</h3>
+                    <h3 class="french-content">Casablanca</h3>
+                    <p class="arabic-content">+150 عميل راضي</p>
+                    <p class="french-content">+150 clients satisfaits</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-landmark"></i>
+                    <h3 class="arabic-content">الرباط</h3>
+                    <h3 class="french-content">Rabat</h3>
+                    <p class="arabic-content">+80 عميل راضي</p>
+                    <p class="french-content">+80 clients satisfaits</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-mosque"></i>
+                    <h3 class="arabic-content">مراكش</h3>
+                    <h3 class="french-content">Marrakech</h3>
+                    <p class="arabic-content">+120 عميل راضي</p>
+                    <p class="french-content">+120 clients satisfaits</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title arabic-content">لماذا تختارنا؟</h2>
+            <h2 class="section-title french-content">Pourquoi nous choisir ?</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3 class="arabic-content">فهمنا للسوق المحلي</h3>
+                    <h3 class="french-content">Notre compréhension du marché local</h3>
+                    <p class="arabic-content">نحن نعيش ونعمل في المغرب. نفهم ثقافة السوق المحلي واحتياجات العملاء</p>
+                    <p class="french-content">Nous vivons et travaillons au Maroc. Nous comprenons la culture du marché local et les besoins des clients</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="arabic-content">خدمة كاملة دون جهد من العميل</h3>
+                    <h3 class="french-content">Service complet sans effort du client</h3>
+                    <p class="arabic-content">نحن نتعامل مع كل شيء: إعداد الحسابات، إنشاء الإعلانات، إدارة الميزانيات، وتحليل النتائج</p>
+                    <p class="french-content">Nous gérons tout : configuration des comptes, création des publicités, gestion des budgets et analyse des résultats</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="arabic-content">استهداف دقيق للمشترين المهتمين</h3>
+                    <h3 class="french-content">Ciblage précis des acheteurs intéressés</h3>
+                    <p class="arabic-content">نستخدم تقنيات متقدمة لاستهداف الأشخاص المهتمين حقاً بشراء العقارات</p>
+                    <p class="french-content">Nous utilisons des techniques avancées pour cibler les personnes vraiment intéressées par l'achat immobilier</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title arabic-content">كيف نعمل</h2>
+            <h2 class="section-title french-content">Comment nous travaillons</h2>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="arabic-content">تدقيق شامل</h3>
+                    <h3 class="french-content">Audit complet</h3>
+                    <p class="arabic-content">نحلل حسابك الحالي ونحدد فرص التحسين</p>
+                    <p class="french-content">Nous analysons votre compte actuel et identifions les opportunités d'amélioration</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="arabic-content">إنشاء الإعلانات</h3>
+                    <h3 class="french-content">Création des publicités</h3>
+                    <p class="arabic-content">نصمم إعلانات مخصصة تجذب العملاء المحتملين</p>
+                    <p class="french-content">Nous concevons des publicités personnalisées qui attirent les prospects</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="arabic-content">جلب العملاء المحتملين</h3>
+                    <h3 class="french-content">Génération de leads</h3>
+                    <p class="arabic-content">نبدأ في جلب العملاء المحتملين المؤهلين لعملك</p>
+                    <p class="french-content">Nous commençons à générer des leads qualifiés pour votre entreprise</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="arabic-content">دعم مستمر</h3>
+                    <h3 class="french-content">Support continu</h3>
+                    <p class="arabic-content">نوفر دعم مستمر وتحسين مستمر للحملات</p>
+                    <p class="french-content">Nous fournissons un support continu et une optimisation constante des campagnes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capture Form -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="section-title arabic-content">ابدأ رحلتك نحو النجاح</h2>
+                <h2 class="section-title french-content">Commencez votre voyage vers le succès</h2>
+                
+                <form id="leadForm">
+                    <div class="form-group">
+                        <label for="name" class="arabic-content">الاسم</label>
+                        <label for="name" class="french-content">Nom</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="arabic-content">رقم الهاتف</label>
+                        <label for="phone" class="french-content">Numéro de téléphone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city" class="arabic-content">المدينة</label>
+                        <label for="city" class="french-content">Ville</label>
+                        <select id="city" name="city" required>
+                            <option value="" class="arabic-content">اختر المدينة</option>
+                            <option value="" class="french-content">Sélectionnez une ville</option>
+                            <option value="casablanca" class="arabic-content">الدار البيضاء</option>
+                            <option value="casablanca" class="french-content">Casablanca</option>
+                            <option value="rabat" class="arabic-content">الرباط</option>
+                            <option value="rabat" class="french-content">Rabat</option>
+                            <option value="marrakech" class="arabic-content">مراكش</option>
+                            <option value="marrakech" class="french-content">Marrakech</option>
+                            <option value="fes" class="arabic-content">فاس</option>
+                            <option value="fes" class="french-content">Fès</option>
+                            <option value="agadir" class="arabic-content">أكادير</option>
+                            <option value="agadir" class="french-content">Agadir</option>
+                            <option value="other" class="arabic-content">مدينة أخرى</option>
+                            <option value="other" class="french-content">Autre ville</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website" class="arabic-content">رابط صفحة العقارات (اختياري)</label>
+                        <label for="website" class="french-content">Lien vers la page immobilière (optionnel)</label>
+                        <input type="url" id="website" name="website" placeholder="https://example.com">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn arabic-content">احجز مكالمتك المجانية الآن</button>
+                    <button type="submit" class="submit-btn french-content">Réservez votre appel gratuit maintenant</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title arabic-content">ماذا يقول عملاؤنا</h2>
+            <h2 class="section-title french-content">Ce que disent nos clients</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text arabic-content">"زادت مبيعاتي بنسبة 300% في 3 أشهر فقط. فريق Strategix Media محترف جداً!"</p>
+                    <p class="testimonial-text french-content">"Mes ventes ont augmenté de 300% en seulement 3 mois. L'équipe Strategix Media est très professionnelle !"</p>
+                    <p class="testimonial-author arabic-content">- أحمد المريني، الدار البيضاء</p>
+                    <p class="testimonial-author french-content">- Ahmed El Merini, Casablanca</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text arabic-content">"أفضل استثمار قمت به في حياتي المهنية. العملاء المحتملون يتواصلون معي يومياً"</p>
+                    <p class="testimonial-text french-content">"Le meilleur investissement de ma carrière. Les prospects me contactent quotidiennement"</p>
+                    <p class="testimonial-author arabic-content">- فاطمة الزهراء، الرباط</p>
+                    <p class="testimonial-author french-content">- Fatima Zahra, Rabat</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text arabic-content">"خدمة شاملة ومهنية. لا أتذكر آخر مرة قمت فيها بإنشاء إعلان بنفسي!"</p>
+                    <p class="testimonial-text french-content">"Service complet et professionnel. Je ne me souviens plus de la dernière fois que j'ai créé une publicité moi-même !"</p>
+                    <p class="testimonial-author arabic-content">- محمد العزيزي، مراكش</p>
+                    <p class="testimonial-author french-content">- Mohamed El Azizi, Marrakech</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="arabic-content">© 2024 Strategix Media. جميع الحقوق محفوظة</p>
+            <p class="french-content">© 2024 Strategix Media. Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/212600000000?text=مرحبا، أريد معرفة المزيد عن خدماتكم" class="whatsapp-float arabic-content">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://wa.me/212600000000?text=Bonjour, je souhaite en savoir plus sur vos services" class="whatsapp-float french-content">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function switchLanguage(lang) {
+            // Update document language and direction
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update language toggle buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show/hide content based on language
+            const arabicContent = document.querySelectorAll('.arabic-content');
+            const frenchContent = document.querySelectorAll('.french-content');
+            
+            if (lang === 'ar') {
+                arabicContent.forEach(el => el.style.display = 'block');
+                frenchContent.forEach(el => el.style.display = 'none');
+            } else {
+                arabicContent.forEach(el => el.style.display = 'none');
+                frenchContent.forEach(el => el.style.display = 'block');
+            }
+        }
+
+        // Form submission
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send the data to your server
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            const currentLang = document.documentElement.lang;
+            const message = currentLang === 'ar' 
+                ? 'تم إرسال طلبك بنجاح! سنتواصل معك قريباً'
+                : 'Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt';
+            
+            alert(message);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
