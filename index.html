@@ -711,6 +711,36 @@
                 frenchContent.forEach(el => el.style.display = 'block');
             }
         
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lead Form to WhatsApp</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #formMessage { margin-top: 10px; color: green; }
+  </style>
+</head>
+<body>
+  <h2>Contact Us</h2>
+  <form id="leadForm">
+    <label>
+      Name:
+      <input type="text" name="Name" required />
+    </label><br /><br />
+    <label>
+      Email:
+      <input type="email" name="Email" required />
+    </label><br /><br />
+    <label>
+      Message:
+      <textarea name="Message" required></textarea>
+    </label><br /><br />
+    <button type="submit">Send to WhatsApp</button>
+  </form>
+  
+  <div id="formMessage"></div>
+
   <script>
     document.getElementById('leadForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -728,10 +758,10 @@
       const encodedMessage = encodeURIComponent(messageText);
 
       // Your WhatsApp Business number (e.g., 212600000000)
-      const phoneNumber = "0718864720";
+      const phoneNumber = "212718864720"; // Replace with your actual number
 
       // Build WhatsApp URL
-      const whatsappUrl = `https://wa.me/212718864720?text=${encodedMessage}`;
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
       // Open WhatsApp in a new tab
       window.open(whatsappUrl, '_blank');
@@ -745,12 +775,6 @@
       const messageContainer = document.getElementById('formMessage');
       if (messageContainer) {
         messageContainer.textContent = successMessage;
-      }  
-            alert(message);
-            
-            // Reset form
-            this.reset();
-        });
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
