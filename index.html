@@ -710,42 +710,42 @@
                 arabicContent.forEach(el => el.style.display = 'none');
                 frenchContent.forEach(el => el.style.display = 'block');
             }
-        }
+        
+  <script>
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-// Get form data
-const formData = new FormData(this);
-const data = Object.fromEntries(formData);
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
 
-// Build the message text
-let messageText = "Nouvelle demande:\n";
-for (const [key, value] of Object.entries(data)) {
-  messageText += `${key}: ${value}\n`;
-}
+      // Build message text
+      let messageText = "New Lead:\n";
+      for (const [key, value] of Object.entries(data)) {
+        messageText += `${key}: ${value}\n`;
+      }
 
-// Encode the message
-const encodedMessage = encodeURIComponent(messageText);
+      // Encode message
+      const encodedMessage = encodeURIComponent(messageText);
 
-// Your WhatsApp number (example: 212612345678 for Morocco)
-const phoneNumber = "212612345678";
+      // Your WhatsApp Business number (e.g., 212600000000)
+      const phoneNumber = "0718864720";
 
-// Build the WhatsApp URL
-const whatsappUrl = `https://wa.me/2120718864720?text=${encodedMessage}`;
+      // Build WhatsApp URL
+      const whatsappUrl = `https://wa.me/212718864720?text=${encodedMessage}`;
 
-// Redirect to WhatsApp
-window.open(whatsappUrl, '_blank');
+      // Open WhatsApp in a new tab
+      window.open(whatsappUrl, '_blank');
 
-// Optionally show a message on the page
-const currentLang = document.documentElement.lang;
-const successMessage = currentLang === 'ar'
-  ? 'تم إرسال طلبك بنجاح! سيتم فتح واتساب لإرسال التفاصيل.'
-  : 'Votre demande a été envoyée. WhatsApp va s’ouvrir pour confirmer.';
+      // Show confirmation message
+      const currentLang = document.documentElement.lang;
+      const successMessage = currentLang === 'ar'
+        ? 'سيتم فتح واتساب لإرسال التفاصيل.'
+        : 'WhatsApp will open to send your message.';
 
-const messageContainer = document.getElementById('formMessage');
-if (messageContainer) {
-  messageContainer.textContent = successMessage;
-}
-
-            
+      const messageContainer = document.getElementById('formMessage');
+      if (messageContainer) {
+        messageContainer.textContent = successMessage;
+      }  
             alert(message);
             
             // Reset form
